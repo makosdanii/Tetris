@@ -8,38 +8,41 @@ namespace Tetris_WinForms.Shape_utils
 {
     class LShape : Shape
     {
-        public LShape(Position pos, Coord coord, Coord bound, int colorCode) : base(pos, coord, bound, colorCode)
+        public LShape(Coord coord, Coord bound, int colorCode) : base(bound, colorCode)
         {
         }
-        public override void Replace(Coord[] newCoords, Position newPos)
+        public override Coord[] Replace(Position newPos, bool coldStart = false)
         {
-            switch (newPos)
+            switch (newPos == Position.UNDEFINED ? Position : newPos)
             {
                 case Position.SOUTH:
-                    newCoords[1] = new Coord(newCoords[0].X, newCoords[0].Y + 1);
-                    newCoords[2] = new Coord(newCoords[0].X, newCoords[0].Y + 2);
-                    newCoords[3] = new Coord(newCoords[0].X + 1, newCoords[0].Y + 2);
+                    TempCoords[1] = new Coord(TempCoords[0].X, TempCoords[0].Y + 1);
+                    TempCoords[2] = new Coord(TempCoords[0].X, TempCoords[0].Y + 2);
+                    TempCoords[3] = new Coord(TempCoords[0].X + 1, TempCoords[0].Y + 2);
                     break;
                 case Position.WEST:
-                    newCoords[1] = new Coord(newCoords[0].X - 1, newCoords[0].Y);
-                    newCoords[2] = new Coord(newCoords[0].X - 2, newCoords[0].Y);
-                    newCoords[3] = new Coord(newCoords[0].X - 2, newCoords[0].Y + 1);
+                    TempCoords[1] = new Coord(TempCoords[0].X - 1, TempCoords[0].Y);
+                    TempCoords[2] = new Coord(TempCoords[0].X - 2, TempCoords[0].Y);
+                    TempCoords[3] = new Coord(TempCoords[0].X - 2, TempCoords[0].Y + 1);
                     break;
                 case Position.NORTH:
-                    newCoords[1] = new Coord(newCoords[0].X, newCoords[0].Y - 1);
-                    newCoords[2] = new Coord(newCoords[0].X, newCoords[0].Y - 2);
-                    newCoords[3] = new Coord(newCoords[0].X - 1, newCoords[0].Y - 2);
+                    TempCoords[1] = new Coord(TempCoords[0].X, TempCoords[0].Y - 1);
+                    TempCoords[2] = new Coord(TempCoords[0].X, TempCoords[0].Y - 2);
+                    TempCoords[3] = new Coord(TempCoords[0].X - 1, TempCoords[0].Y - 2);
                     break;
                 case Position.EAST:
-                    newCoords[1] = new Coord(newCoords[0].X + 1, newCoords[0].Y);
-                    newCoords[2] = new Coord(newCoords[0].X + 2, newCoords[0].Y);
-                    newCoords[3] = new Coord(newCoords[0].X + 2, newCoords[0].Y - 1);
+                    TempCoords[1] = new Coord(TempCoords[0].X + 1, TempCoords[0].Y);
+                    TempCoords[2] = new Coord(TempCoords[0].X + 2, TempCoords[0].Y);
+                    TempCoords[3] = new Coord(TempCoords[0].X + 2, TempCoords[0].Y - 1);
                     break;
                 default:
                     break;
             }
 
-            OnDrawn(new Shape_events.DrawnEventArgs(newCoords, Position != newPos));
+            if (coldStart) return TempCoords;
+
+            OnDrawn(new Shape_events.DrawnEventArgs(Coordinates[0].Y != TempCoords[0].Y, newPos));
+            return TempCoords;
         }
     }
 }
