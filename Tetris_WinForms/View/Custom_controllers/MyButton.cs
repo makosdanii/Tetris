@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     public class MyButton : Button
     {

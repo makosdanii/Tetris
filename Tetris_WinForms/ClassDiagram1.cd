@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tetris_WinForms.Shape_events.BlowEventArgs" Collapsed="true">
+    <Position X="10" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\Shape_events\BlowEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_events.DrawnEventArgs">
+    <Position X="4.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAQACAAAAAAAA=</HashCode>
+      <FileName>Model\Shape_events\DrawnEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_events.StuckEventArgs" Collapsed="true">
+    <Position X="12" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape_events\StuckEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Coord" Collapsed="true">
+    <Position X="4.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAQAYAA=</HashCode>
+      <FileName>Model\Shape_utils\Coord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Model">
+    <Position X="9.5" Y="2.75" Width="4" />
+    <AssociationLine Name="ShapeTag" Type="Tetris_WinForms.ShapeTag">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.142" Y="0.086" Height="0.182" Width="0.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>GBAEoIAECAARwAQABACAAAAACAABAASAAIAABICAAAA=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ShapeTag" />
+      <Property Name="StuckEventArgs" />
+      <Property Name="BlowEventArgs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape">
+    <Position X="6.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAMgIAAAIAAAAAgAGAAAAAAMAEAAAAAAAACAAQAACQ=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Direction" />
+      <Property Name="DrawnEventArgs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tetris_WinForms.TXTPersistence" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Persistence\TXTPersistence.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.788" Collapsed="true" />
+  </Class>
+  <Class Name="Tetris_WinForms.MyButton" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>View\Custom_controllers\MyButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.LevelSelector">
+    <Position X="18.75" Y="5.5" Width="2" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="comboBox1" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="LevelSelector" Hidden="true" />
+      <Method Name="LevelSelector_Load" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAQAACAAAACQAAYAgAAAGAAAAAAAAI=</HashCode>
+      <FileName>View\LevelSelector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectedEventAgrs" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Tetris_WinForms.SelectedEventAgrs" Collapsed="true">
+    <Position X="19.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>View\SelectedEventAgrs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.View">
+    <Position X="14.75" Y="2.75" Width="3.75" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="File" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="loadGameToolStripMenuItem" Hidden="true" />
+      <Field Name="panel1" Hidden="true" />
+      <Field Name="saveToolStripMenuItem" Hidden="true" />
+      <Field Name="setGameToolStripMenuItem" Hidden="true" />
+      <Field Name="tableLayoutPanel1" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EBAAAEAgACAggAAABKCAwgaCQBAuAAEAAGhMASxAAGA=</HashCode>
+      <FileName>View\View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Program" Collapsed="true">
+    <Position X="16" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.Line">
+    <Position X="3.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.LShape">
+    <Position X="8" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\LShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.Polymorph">
+    <Position X="10.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Polymorph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.Rombus">
+    <Position X="12.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Rombus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.Roof">
+    <Position X="1.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Roof.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WinForms.Shape_utils.Square">
+    <Position X="5.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Square.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Tetris_WinForms.IPersistence" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Persistence\IPersistence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Tetris_WinForms.ShapeTag" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAgAIAA=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Tetris_WinForms.Position" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAhAAAQAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Tetris_WinForms.Direction" Collapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAACAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

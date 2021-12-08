@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
-    class Coord
+    public class Coord
     {
         public Coord(int x, int y)
         {
