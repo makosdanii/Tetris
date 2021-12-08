@@ -17,6 +17,7 @@ namespace Tetris_WinForms
                 case Keys.Right:
                 case Keys.Up:
                 case Keys.Down:
+                case Keys.Space:
                     return true;
                 default:
                     return base.IsInputKey(keyData);

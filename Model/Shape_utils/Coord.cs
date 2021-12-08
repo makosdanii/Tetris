@@ -21,10 +21,15 @@ namespace Tetris_WinForms
             return this.X == (coord as Coord)?.X && this.Y == (coord as Coord)?.Y;
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public bool OutOfBounds(Coord bound)
         {
 
-            return X < 0 || Y < 0 || X > bound.X - 1 || Y > bound.Y - 1;
+            return X < 0 || Y < 0 || X > bound.X - 1;
 
         }
     }

@@ -45,7 +45,7 @@ namespace Tetris_WinForms
             this.panel1.Location = new System.Drawing.Point(1, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(182, 531);
+            this.panel1.Size = new System.Drawing.Size(222, 531);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -73,7 +73,7 @@ namespace Tetris_WinForms
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(184, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(224, 561);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -83,7 +83,7 @@ namespace Tetris_WinForms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(178, 22);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(218, 22);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // button2
@@ -101,11 +101,14 @@ namespace Tetris_WinForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 561);
+            this.ClientSize = new System.Drawing.Size(224, 561);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Location = new System.Drawing.Point(10, 10);
             this.Margin = new System.Windows.Forms.Padding(1);
-            this.MinimumSize = new System.Drawing.Size(200, 600);
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(240, 600);
             this.Name = "View";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Tetris";
             this.Load += new System.EventHandler(this.View_Load);
             this.Shown += new System.EventHandler(this.View_Shown);
