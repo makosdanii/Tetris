@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tetris_WPF.Shape_events.DrawnEventArgs" Collapsed="true">
+    <Position X="11.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAgAAAAACAAACAAAA=</HashCode>
+      <FileName>Model\Shape_events\DrawnEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_events.StuckEventArgs" Collapsed="true">
+    <Position X="11.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape_events\StuckEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Coord" Collapsed="true">
+    <Position X="4.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAQAYAA=</HashCode>
+      <FileName>Model\Shape_utils\Coord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Model" Collapsed="true">
+    <Position X="11" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EBAEIIAkCAARwAQABAACAAAACAABAACAAIAAAIAAAAA=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape">
+    <Position X="6.5" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAMgIAAAIAAAAAgAGAAAAAAMAEAAAAAAAACAAQAACQ=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.TextPersistence" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Persistence\TextPersistence.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tetris_WPF.DelegateCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tetris_WPF.ShapeField">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAIAECACABAgAAAAAA=</HashCode>
+      <FileName>ViewModel\ShapeField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.ViewModel">
+    <Position X="17.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAAAgIAgAAAwAARAIoAAAEAgCBAAAAAABAISABIABAM=</HashCode>
+      <FileName>ViewModel\ViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.ViewModelBase" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tetris_WPF.App" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAiAABAAQAAAAAAAAQBAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.329" />
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.Line" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.LShape" Collapsed="true">
+    <Position X="1" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\LShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.Polymorph" Collapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Polymorph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.Rombus" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Rombus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.Roof" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Roof.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tetris_WPF.Shape_utils.Square" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Shape_utils\Square.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Tetris_WPF.IPersistence" Collapsed="true">
+    <Position X="11.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Persistence\IPersistence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Tetris_WPF.ShapeTag" Collapsed="true">
+    <Position X="4.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAgAIAA=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Tetris_WPF.Position" Collapsed="true">
+    <Position X="4.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAhAAAQAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Tetris_WPF.Direction" Collapsed="true">
+    <Position X="6.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAACAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Tetris_WPF.Size" Collapsed="true">
+    <Position X="15.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAAAAAAAQAA=</HashCode>
+      <FileName>ViewModel\ViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
