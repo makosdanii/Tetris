@@ -15,61 +15,86 @@ namespace Tetris_WinForms
 
     class Model
     {
-        public Model(int size)
+        public Model(int width)
         {
             Shapes = new List<Shape>();
             _rand = new Random();
-            this.Size = size;
+            this.Size = new Coord(width, LENGTH);
         }
 
         private Random _rand;
         private static int SHAPECOUNT = Enum.GetValues(typeof(ShapeTag)).Length;
         private static int POSCOUNT = Enum.GetValues(typeof(Position)).Length;
+        private static int LENGTH = 16;
+        private static int COLORS = 5;
 
 
-        public int Size { get; private set; }
+        public Coord Size { get; private set; }
         public event EventHandler<DrawnEventArgs> Drawn;
         public List<Shape> Shapes { get; set; }
 
         public void AddShape()
         {
             ShapeTag shapeTag = (ShapeTag)(_rand.Next() % SHAPECOUNT);
-            try
+            int colorCode = _rand.Next() % COLORS;
+            Shape shape = null;
+
+            do
             {
                 switch (shapeTag)
                 {
                     case ShapeTag.SQUARE:
-                        Shapes.Add(new Square((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size, 1)));
+                        shape = new Square((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size.X, 0), Size, colorCode);
                         break;
                     case ShapeTag.ROOF:
-                        Shapes.Add(new Roof((Position)(_rand.Next() % 4), new Coord(_rand.Next() % Size, 1)));
+                        shape = new Roof((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size.X, 0), Size, colorCode);
                         break;
                     case ShapeTag.ROMBUS:
-                        Shapes.Add(new Rombus((Position)(_rand.Next() % 4), new Coord(_rand.Next() % Size, 1)));
+                        shape = new Rombus((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size.X, 0), Size, colorCode);
                         break;
                     case ShapeTag.LSHAPE:
-                        Shapes.Add(new LShape((Position)(_rand.Next() % 4), new Coord(_rand.Next() % Size, 1)));
+                        shape = new LShape((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size.X, 0), Size, colorCode);
                         break;
                     case ShapeTag.LINE:
-                        Shapes.Add(new Line((Position)(_rand.Next() % 4), new Coord(_rand.Next() % Size, 1)));
+                        shape = new Line((Position)(_rand.Next() % POSCOUNT), new Coord(_rand.Next() % Size.X, 0), Size, colorCode);
                         break;
                     default:
                         break;
                 }
 
-                Shapes[^1].Drawn += Model_Drawn;
-                Drawn?.Invoke(this, new DrawnEventArgs(Shapes.Count - 1));
+            } while (shape.OutOfBounds(shape.Coordinates));
 
+            Shapes.Add(shape);
+            Shapes[^1].Drawn += Model_Drawn;
+            Drawn?.Invoke(this, new DrawnEventArgs());
+        }
+
+        public bool validator(Coord[] newCoords)
+        {
+            for (int i = Shapes.Count -2; i >= 0; i--) //init this way, so as not to compare new shape with itself
+            {
+                foreach (Coord coord in Shapes[i].Coordinates) //compare each coordinates with any of the new shape's
+                    if (newCoords.Any<Coord>(p1 => p1.Equals(coord))) return false;
             }
-            catch(Exception e){
-                
-                System.Diagnostics.Debug.WriteLine("Problem at creating shape");
-            }
+            
+            return true;
         }
 
         private void Model_Drawn(object sender, DrawnEventArgs e)
         {
-            Drawn?.Invoke(this, new DrawnEventArgs(Shapes.Count-1));
+
+            if (validator(e.Coords))
+            {
+
+                if (e.Rotated)
+                {
+                    Shapes[^1].Position = Shapes[^1].Position == Position.EAST ? Position.SOUTH : Shapes[^1].Position + 1;
+                }
+
+                Shapes[^1].Coordinates = e.Coords;
+
+                Drawn?.Invoke(this, new DrawnEventArgs());
+            }
         }
     }
 }

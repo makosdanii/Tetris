@@ -8,16 +8,12 @@ namespace Tetris_WinForms.Shape_events
 {
     class DrawnEventArgs : EventArgs
     {
-        public int Index { get; set; }
-
-        public DrawnEventArgs()
+        public Coord[] Coords { get; private set; }
+        public bool Rotated { get; set; }
+        public DrawnEventArgs(Coord[] coords = null, bool rotated = false)
         {
-            Index = -1;
-        }
-
-        public DrawnEventArgs(int index)
-        {
-            this.Index = index;
+            this.Coords = coords;
+            this.Rotated = rotated;
         }
     }
 }

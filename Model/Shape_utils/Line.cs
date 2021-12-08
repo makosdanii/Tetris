@@ -8,38 +8,38 @@ namespace Tetris_WinForms.Shape_utils
 {
     class Line : Shape
     {
-        public Line(Position pos, Coord coord) : base(pos, coord)
+        public Line(Position pos, Coord coord, Coord bound, int colorCode) : base(pos, coord, bound, colorCode)
         {
         }
-        public override void Redraw()
+        public override void Replace(Coord[] newCoords, Position newPos)
         {
-            switch (this.Position)
+            switch (newPos)
             {
                 case Position.SOUTH:
-                    Coordinates[1] = new Coord(Coordinates[0].x, Coordinates[0].y + 1);
-                    Coordinates[2] = new Coord(Coordinates[0].x, Coordinates[0].y + 2);
-                    Coordinates[3] = new Coord(Coordinates[0].x, Coordinates[0].y + 3);
+                    newCoords[1] = new Coord(newCoords[0].X, newCoords[0].Y + 1);
+                    newCoords[2] = new Coord(newCoords[0].X, newCoords[0].Y + 2);
+                    newCoords[3] = new Coord(newCoords[0].X, newCoords[0].Y + 3);
                     break;
                 case Position.WEST:
-                    Coordinates[1] = new Coord(Coordinates[0].x - 1, Coordinates[0].y);
-                    Coordinates[2] = new Coord(Coordinates[0].x - 2, Coordinates[0].y);
-                    Coordinates[3] = new Coord(Coordinates[0].x - 3, Coordinates[0].y);
+                    newCoords[1] = new Coord(newCoords[0].X - 1, newCoords[0].Y);
+                    newCoords[2] = new Coord(newCoords[0].X - 2, newCoords[0].Y);
+                    newCoords[3] = new Coord(newCoords[0].X - 3, newCoords[0].Y);
                     break;
                 case Position.NORTH:
-                    Coordinates[1] = new Coord(Coordinates[0].x, Coordinates[0].y - 1);
-                    Coordinates[2] = new Coord(Coordinates[0].x, Coordinates[0].y - 2);
-                    Coordinates[3] = new Coord(Coordinates[0].x, Coordinates[0].y - 3);
+                    newCoords[1] = new Coord(newCoords[0].X, newCoords[0].Y - 1);
+                    newCoords[2] = new Coord(newCoords[0].X, newCoords[0].Y - 2);
+                    newCoords[3] = new Coord(newCoords[0].X, newCoords[0].Y - 3);
                     break;
                 case Position.EAST:
-                    Coordinates[1] = new Coord(Coordinates[0].x + 1, Coordinates[0].y);
-                    Coordinates[2] = new Coord(Coordinates[0].x + 2, Coordinates[0].y);
-                    Coordinates[3] = new Coord(Coordinates[0].x + 3, Coordinates[0].y);
+                    newCoords[1] = new Coord(newCoords[0].X + 1, newCoords[0].Y);
+                    newCoords[2] = new Coord(newCoords[0].X + 2, newCoords[0].Y);
+                    newCoords[3] = new Coord(newCoords[0].X + 3, newCoords[0].Y);
                     break;
                 default:
                     break;
             }
 
-            OnDrawn(new Shape_events.DrawnEventArgs());
+            OnDrawn(new Shape_events.DrawnEventArgs(newCoords, Position != newPos));
         }
     }
 }
