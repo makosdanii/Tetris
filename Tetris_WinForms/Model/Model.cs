@@ -3,30 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetris_WinForms.Shape_utils;
-using Tetris_WinForms.Shape_events;
+using Tetris_WPF.Shape_utils;
+using Tetris_WPF.Shape_events;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     enum ShapeTag
     {
         SQUARE, ROOF, ROMBUS, LSHAPE, LINE
     }
 
-    class Model
+    public class Model
     {
-        public Model(int width)
+        public Model(IPersistence _persistence, int width)
         {
             Shapes = new List<Shape>();
-            shapesToBlow = new List<int>();
             rowComplete = new int[LENGTH];
-            for (int i = 0; i < rowComplete.Length; i++) rowComplete[i] = 0;
+
             _rand = new Random();
+            this._persistence = _persistence;
+
             this.Size = new Coord(width, LENGTH);
+        }
+
+        public Model(IPersistence _persistence, string path)
+        {
+            Shapes = new List<Shape>();
+            rowComplete = new int[LENGTH];
+
+            this._persistence = _persistence;
+            _rand = new Random();
+
+            Load(path);
+
         }
 
         private Random _rand;
         private int[] rowComplete;
+
+        private IPersistence _persistence;
 
         private static int SHAPECOUNT = 5;
         private static int POSCOUNT = 4;
@@ -38,9 +53,90 @@ namespace Tetris_WinForms
         public List<int> shapesToBlow { get; private set; }
         public Coord Size { get; private set; }
 
+        internal ShapeTag ShapeTag
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        internal StuckEventArgs StuckEventArgs
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public BlowEventArgs BlowEventArgs
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public event EventHandler<EventArgs> Changed;
         public event EventHandler<EventArgs> GameLost;
         public event EventHandler<BlowEventArgs> Blow;
+
+        public void Save(String path)
+        {
+            List<String> data = new List<string>();
+            StringBuilder line = new StringBuilder();
+            for (int i = 0; i < Shapes.Count - 1; i++) //currently falling will be emitted
+            {
+
+                foreach (Coord coord in Shapes[i].Coordinates)
+                {
+                    line.Append(coord.X);
+                    line.Append(' ');
+                    line.Append(coord.Y);
+                    line.Append(' ');
+                }
+
+                if (line.Length > 0)
+                {
+                    line.Remove(line.Length - 1, 1);
+                    data.Add(line.ToString());
+                    line.Clear();
+
+                }
+            }
+
+            if (data.Count > 0)
+            {
+                _persistence.Write(path, data.ToArray(), Size.X);
+                data.Clear();
+            }
+
+        }
+
+        public void Load(String path) //catch error
+        {
+            String[] source = _persistence.Read(path);
+
+            Size = new Coord(Int32.Parse(source[0]), LENGTH);
+
+            for (int j = 1; j < source.Length; j++)
+            {
+                if (source[j] == "") continue;
+
+                String[] _coords = source[j].Split(' ');
+                List<Coord> coords = new List<Coord>();
+
+                for (int i = 0; i < _coords.Length; i+= 2)
+                {
+                    coords.Add(new Coord(Int32.Parse(_coords[i]), Int32.Parse(_coords[i + 1])));
+                    rowComplete[Int32.Parse(_coords[i + 1])]++;
+                }
+
+                Shapes.Add(new Polymorph(coords, Size, _rand.Next() % COLORS));
+                Shapes[^1].Drawn += Model_Drawn;
+            }
+        }
+
 
         public void AddShape()
         {
@@ -117,10 +213,8 @@ namespace Tetris_WinForms
             rowComplete[index] = 0;
 
             int cleared = 0;
-            bool top = index < LENGTH / 2;
 
-            //optimised for loop to achieve cleared faster, then return
-            for (int i = top ? Shapes.Count - 1 : 0; i != (top ? -1 : Shapes.Count); i = (top ? i - 1 : i + 1))
+            for (int i = Shapes.Count - 1; i >= 0; i--)
             {
                 if (cleared == Size.X) return;
                 for (int j = Shapes[i].Coordinates.Count-1; j>= 0; j--)
@@ -131,16 +225,18 @@ namespace Tetris_WinForms
                         cleared++;
                     }
                 }
+
+                if (Shapes[i].Coordinates.Count == 0) Shapes.RemoveAt(i);
             }
         }
 
         private void BlowRows()
         {
-            if (!rowComplete.Any<int>(a => a == Size.X)) return;
+            if (!rowComplete.Any<int>(a => a >= Size.X)) return;
 
             for (int i = 0; i<rowComplete.Length; i++)
             {
-                if (rowComplete[i] == Size.X)
+                if (rowComplete[i] >= Size.X)
                 {
                     Blow?.Invoke(this, new BlowEventArgs(i));
                     ClearRow(i);

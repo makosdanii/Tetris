@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     public class SelectedEventAgrs : EventArgs
     {

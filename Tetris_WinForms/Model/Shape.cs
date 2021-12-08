@@ -3,32 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetris_WinForms.Shape_events;
+using Tetris_WPF.Shape_events;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
-    enum Position
+    public enum Position
     {
         SOUTH, WEST, NORTH, EAST, UNDEFINED
     }
 
-    enum Direction
+    public enum Direction
     {
         LEFT, RIGHT, DOWN
     }
 
-    abstract class Shape
+    public abstract class Shape
     {
+        public Shape(List<Coord> coords, Coord bound, int colorCode)
+        {
+            Coordinates = coords;
+            coordBound = bound;
+            ColorCode = colorCode;
+        }
+
         public Shape(Coord bound, int colorCode)
         {
-            TempCoords = new Coord[4];
-
             coordBound = bound;
             ColorCode = colorCode;
         }
 
         public bool Init(Position pos, Coord coord)
         {
+            TempCoords = new Coord[4];
             TempCoords[0] = coord;
             Replace(pos, true);
             if (!OutOfBounds())
@@ -51,14 +57,18 @@ namespace Tetris_WinForms
 
         public void Rotate()
         {
-            Position newPos = this.Position == Position.EAST ? Position.SOUTH : this.Position + 1;
+            TempCoords = new Coord[Coordinates.Count];
             Coordinates.CopyTo(TempCoords);
+
+            Position newPos = this.Position == Position.EAST ? Position.SOUTH : this.Position + 1;
             Replace(newPos);
         }
 
         public void Move(Direction dir)
         {
+            TempCoords = new Coord[Coordinates.Count];
             Coordinates.CopyTo(TempCoords);
+
             if (dir == Direction.DOWN)
             {
                 TempCoords[0] = new Coord(Coordinates[0].X, Coordinates[0].Y + 1);
@@ -88,5 +98,21 @@ namespace Tetris_WinForms
         }
 
         public abstract Coord[] Replace(Position newPos, bool coldStart = false);
+
+        public Direction Direction
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public DrawnEventArgs DrawnEventArgs
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

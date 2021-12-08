@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     static class Program
     {

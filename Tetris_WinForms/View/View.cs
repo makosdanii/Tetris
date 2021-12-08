@@ -4,14 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tetris_WinForms.Shape_events;
+using Tetris_WPF.Shape_events;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     public partial class View : Form
     {
@@ -44,6 +45,8 @@ namespace Tetris_WinForms
         private bool getShape;
 
         System.Windows.Forms.Timer _timer;
+        OpenFileDialog _openFileDialog;
+        SaveFileDialog _saveFileDialog;
 
         Model gamemodel;
         LevelSelector selectorform;
@@ -51,12 +54,15 @@ namespace Tetris_WinForms
         {
             InitializeComponent();
             size = -1;
+
             started = false;
             getShape = true;
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 1000;
             _timer.Enabled = false;
+
+            button1.Enabled = false;
         }
 
 
@@ -69,7 +75,7 @@ namespace Tetris_WinForms
         }
         private void View_Load(object sender, EventArgs e)
         {
-            gamemodel = new Model(size);
+            gamemodel = new Model(null, -1);
         }
 
         private void View_ResizeEnd(object sender, EventArgs e)
@@ -79,14 +85,9 @@ namespace Tetris_WinForms
 
         private void Selectorform_Selected(object sender, SelectedEventAgrs e)
         {
-            size = Columns[e.Index];
-            Size = adjustSize(e.Index);
+            gamemodel = new Model(new TXTPersistence(), Columns[e.Index]);
+            initModel(Columns[e.Index]);
 
-            gamemodel = new Model(size);
-            gamemodel.Changed += _gamemodel_Changed;
-            gamemodel.GameLost += Gamemodel_GameLost;
-            gamemodel.Blow += Gamemodel_Blow;
-            
             button1.Enabled = true;
 
             panel1.CreateGraphics().Clear(BackColor);
@@ -118,15 +119,25 @@ namespace Tetris_WinForms
             }
         }
 
-        private Size adjustSize(int index = -1)
+        private Size adjustSize(int size = -1)
         {
 
-            if (index != -1)
+            if (size != -1)
             {
-                int width = Resolution[Columns[index]];
-                MinimumSize = new Size(width, width / size);
+                int width = Resolution[size];
+                MinimumSize = new Size(width, width / this.size);
             }
-            return new Size(panel1.Width, (panel1.Width / size) * (ROWS+2));
+            return new Size(panel1.Width, (panel1.Width / this.size) * (ROWS + 2));
+        }
+
+        private void initModel(int size)
+        {
+            this.size = size;
+            Size = adjustSize(size);
+
+            gamemodel.Changed += _gamemodel_Changed;
+            gamemodel.GameLost += Gamemodel_GameLost;
+            gamemodel.Blow += Gamemodel_Blow;
         }
         #endregion
 
@@ -155,7 +166,7 @@ namespace Tetris_WinForms
 
         private Point CoordToPoint(Coord c, int scaleX)
         {
-            return new Point(c.X*scaleX, c.Y*scaleX);
+            return new Point(c.X * scaleX, c.Y * scaleX);
         }
 
         private void DrawModel(int blowRow = -1)
@@ -180,7 +191,7 @@ namespace Tetris_WinForms
                         _pen.DashStyle = DashStyle.Solid;
                     }
 
-                    g.DrawRectangle(_pen, new(
+                    g.DrawRectangle(_pen, new Rectangle(
                         CoordToPoint(gamemodel.Shapes[j].Coordinates[i], scaleX), new Size(scaleX, scaleX)));
                 }
             }
@@ -200,17 +211,9 @@ namespace Tetris_WinForms
         {
             started = !started;
             button1.Text = started ? "Pause" : "Start";
-            button2.Enabled = !started;
             KeyPreview = started;
 
             _timer.Enabled = started;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            selectorform = new LevelSelector();
-            selectorform.Selected += Selectorform_Selected;
-            selectorform.Show();
         }
 
         private void View_KeyDown_1(object sender, KeyEventArgs e)
@@ -231,12 +234,53 @@ namespace Tetris_WinForms
                     break;
                 case Keys.Space:
                     button1_Click(this, new EventArgs());
-                     break;
+                    break;
             }
 
         }
 
         #endregion
 
+        private void setGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selectorform = new LevelSelector();
+            selectorform.Selected += Selectorform_Selected;
+            selectorform.Show();
+
+            button1.Enabled = true;
+
+        }
+
+        private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _openFileDialog = new OpenFileDialog();
+            _openFileDialog.Filter = "Text Files | *.txt";
+            if (_openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                gamemodel = new Model(new TXTPersistence(), _openFileDialog.FileName);
+                initModel(gamemodel.Size.X);
+
+                panel1.CreateGraphics().Clear(BackColor);
+                Refresh();
+
+                button1.Enabled = true;
+            }
+
+            getShape = true;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gamemodel.Size.X == -1) return;
+
+            _saveFileDialog = new SaveFileDialog();
+            _saveFileDialog.Filter = "Text Files | *.txt";
+            if (_saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                gamemodel.Save(_saveFileDialog.FileName);
+            }
+        }
     }
 }

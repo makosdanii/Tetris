@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     public partial class LevelSelector : Form
     {
@@ -16,6 +16,14 @@ namespace Tetris_WinForms
         public LevelSelector()
         {
             InitializeComponent();
+        }
+
+        public SelectedEventAgrs SelectedEventAgrs
+        {
+            get => default;
+            set
+            {
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

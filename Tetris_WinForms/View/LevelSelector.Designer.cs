@@ -1,5 +1,5 @@
 ﻿
-namespace Tetris_WinForms
+namespace Tetris_WPF
 {
     partial class LevelSelector
     {
