@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:Tetris_Android"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             x:Class="Tetris_Android.GamePage"
+             Title="Játék">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MainButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Red" />
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="BorderColor" Value="Blue" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="HeightRequest" Value="30" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="16*" />
+            </Grid.RowDefinitions>
+
+          <Button Text="{Binding Status}" Command="{Binding ToggleGameCommand}" Style="{StaticResource MainButtonStyle}" Grid.Row="0" HorizontalOptions="Start" />
+          <Button Text="Beállítások" Command="{Binding ExitCommand}" Style="{StaticResource MainButtonStyle}" Grid.Row="0" HorizontalOptions="End" />
+
+            <!--<ListView ItemsSource="{Binding UIShapes}" Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell>
+                        --><!--no response
+                        <AbsoluteLayout>
+                            <BoxView BackgroundColor="{Binding Color}" 
+                                     AbsoluteLayout.LayoutBounds="{Binding Rect}"/>
+                        </AbsoluteLayout>--><!--
+                        <BoxView AbsoluteLayout.LayoutBounds="{Binding Rect}" BackgroundColor="{Binding Color}"/>
+                    </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+            <Grid BindableLayout.ItemsSource="{Binding UIShapes}" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                    <!--<AbsoluteLayout>
+
+                            <BoxView BackgroundColor="{Binding Color}" 
+                                         AbsoluteLayout.LayoutBounds="{Binding Rect}"
+                                         AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>-->
+                    <BoxView Grid.Row="{Binding Top}"  
+                             Grid.Column="{Binding Left}"
+                        BackgroundColor="{Binding Color}"/>
+                             <!--AbsoluteLayout.LayoutBounds="{Binding Rect}"--> 
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+
+            <!--no response-->
+            <!--<CollectionView Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                    <Grid>
+                        <Rectangle AbsoluteLayout.LayoutBounds="{Binding Rect}" 
+                                   BackgroundColor="{Binding Color}"/>
+                        --><!--<BoxView AbsoluteLayout.LayoutBounds="{Binding Rect}" 
+                                 BackgroundColor="{Binding Color}"/>--><!--
+                        
+                        
+                    </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+        </Grid>
+        
+
+
+</ContentPage>
